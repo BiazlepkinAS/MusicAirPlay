@@ -18,6 +18,8 @@
 		0905E97326E3F897005B02B0 /* kalinka.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0905E97126E3F897005B02B0 /* kalinka.mp3 */; };
 		0905E97426E3F897005B02B0 /* Metallica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0905E97226E3F897005B02B0 /* Metallica.mp3 */; };
 		0905E97626E3F8A1005B02B0 /* Coolio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0905E97526E3F8A1005B02B0 /* Coolio.mp3 */; };
+		0905E97826E40705005B02B0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97726E40705005B02B0 /* Song.swift */; };
+		0905E97A26E4076F005B02B0 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97926E4076F005B02B0 /* Album.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		0905E97126E3F897005B02B0 /* kalinka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kalinka.mp3; sourceTree = "<group>"; };
 		0905E97226E3F897005B02B0 /* Metallica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Metallica.mp3; sourceTree = "<group>"; };
 		0905E97526E3F8A1005B02B0 /* Coolio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Coolio.mp3; sourceTree = "<group>"; };
+		0905E97726E40705005B02B0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		0905E97926E4076F005B02B0 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 		0905E96F26E3F40B005B02B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0905E97726E40705005B02B0 /* Song.swift */,
+				0905E97926E4076F005B02B0 /* Album.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -294,9 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0905E97826E40705005B02B0 /* Song.swift in Sources */,
 				0905E94326DFFBAD005B02B0 /* MainViewController.swift in Sources */,
 				0905E93F26DFFBAD005B02B0 /* AppDelegate.swift in Sources */,
 				0905E94126DFFBAD005B02B0 /* SceneDelegate.swift in Sources */,
+				0905E97A26E4076F005B02B0 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
