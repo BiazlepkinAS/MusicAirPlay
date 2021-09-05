@@ -20,6 +20,7 @@
 		0905E97626E3F8A1005B02B0 /* Coolio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0905E97526E3F8A1005B02B0 /* Coolio.mp3 */; };
 		0905E97826E40705005B02B0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97726E40705005B02B0 /* Song.swift */; };
 		0905E97A26E4076F005B02B0 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97926E4076F005B02B0 /* Album.swift */; };
+		0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0905E97526E3F8A1005B02B0 /* Coolio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Coolio.mp3; sourceTree = "<group>"; };
 		0905E97726E40705005B02B0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		0905E97926E4076F005B02B0 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +116,10 @@
 				0905E94726DFFBB1005B02B0 /* Assets.xcassets */,
 				0905E94426DFFBAD005B02B0 /* Main.storyboard */,
 				0905E94926DFFBB1005B02B0 /* LaunchScreen.storyboard */,
-				0905E94C26DFFBB1005B02B0 /* Info.plist */,
-				0905E94026DFFBAD005B02B0 /* SceneDelegate.swift */,
-				0905E93E26DFFBAD005B02B0 /* AppDelegate.swift */,
 				0905E97026E3F41C005B02B0 /* Resources */,
+				0905E94C26DFFBB1005B02B0 /* Info.plist */,
+				0905E93E26DFFBAD005B02B0 /* AppDelegate.swift */,
+				0905E94026DFFBAD005B02B0 /* SceneDelegate.swift */,
 			);
 			path = MusicAirPlay;
 			sourceTree = "<group>";
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0905E94226DFFBAD005B02B0 /* MainViewController.swift */,
+				0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				0905E93F26DFFBAD005B02B0 /* AppDelegate.swift in Sources */,
 				0905E94126DFFBAD005B02B0 /* SceneDelegate.swift in Sources */,
 				0905E97A26E4076F005B02B0 /* Album.swift in Sources */,
+				0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
