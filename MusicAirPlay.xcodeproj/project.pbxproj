@@ -22,6 +22,7 @@
 		0905E97A26E4076F005B02B0 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97926E4076F005B02B0 /* Album.swift */; };
 		0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */; };
 		0905E97E26E68F9C005B02B0 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97D26E68F9C005B02B0 /* MediaPlayer.swift */; };
+		0905E98026E7DE7A005B02B0 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97F26E7DE7A005B02B0 /* MusicPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		0905E97926E4076F005B02B0 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0905E97D26E68F9C005B02B0 /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
+		0905E97F26E7DE7A005B02B0 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				0905E94226DFFBAD005B02B0 /* MainViewController.swift */,
 				0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */,
 				0905E97D26E68F9C005B02B0 /* MediaPlayer.swift */,
+				0905E97F26E7DE7A005B02B0 /* MusicPlayerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				0905E94126DFFBAD005B02B0 /* SceneDelegate.swift in Sources */,
 				0905E97A26E4076F005B02B0 /* Album.swift in Sources */,
 				0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */,
+				0905E98026E7DE7A005B02B0 /* MusicPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

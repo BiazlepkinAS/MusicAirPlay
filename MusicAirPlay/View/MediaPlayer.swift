@@ -17,7 +17,7 @@ final class MediaPlayer: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = 20
+        image.layer.cornerRadius = image.frame.height / 2
         return image
     }()
     
@@ -33,7 +33,7 @@ final class MediaPlayer: UIView {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumTrackTintColor = UIColor(named: "subtitleColor")
-        slider.addTarget(self, action: #selector(progressScrubebd), for: .valueChanged)
+        slider.addTarget(self, action: #selector(progressScrubbed), for: .valueChanged)
         
         return slider
     }()
@@ -111,7 +111,7 @@ final class MediaPlayer: UIView {
         return button
     }()
     
-    private lazy var controllStack: UIStackView = {
+    private lazy var controlStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [previousButton, playPauseButton, nextButton])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -147,7 +147,7 @@ final class MediaPlayer: UIView {
         }
         
         [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimerLabel,
-         remainingTimeLabel, controllStack, volumeBar].forEach { (view) in
+         remainingTimeLabel, controlStack, volumeBar].forEach { (view) in
             addSubview(view)
          }
         
@@ -202,14 +202,14 @@ final class MediaPlayer: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            controllStack.topAnchor.constraint(equalTo: remainingTimeLabel.bottomAnchor, constant: 10),
-            controllStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
-            controllStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50)
+            controlStack.topAnchor.constraint(equalTo: remainingTimeLabel.bottomAnchor, constant: 10),
+            controlStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            controlStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50)
             
         ])
         
         NSLayoutConstraint.activate([
-            volumeBar.topAnchor.constraint(equalTo: controllStack.bottomAnchor, constant: 10),
+            volumeBar.topAnchor.constraint(equalTo: controlStack.bottomAnchor, constant: 10),
             volumeBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             volumeBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18)
             
@@ -249,7 +249,7 @@ final class MediaPlayer: UIView {
         progressBar.value = 0.0
         progressBar.maximumValue = Float(player.duration)
         player.play()
-        setPlayPauseIcon(isPlaing: player.isPlaying)
+        setPlayPauseIcon(isPlaying: player.isPlaying)
     }
     
     func stop() {
@@ -263,9 +263,9 @@ final class MediaPlayer: UIView {
         player.volume = volumeBar.value
     }
     
-    private func setPlayPauseIcon(isPlaing: Bool) {
+    private func setPlayPauseIcon(isPlaying: Bool) {
         let config = UIImage.SymbolConfiguration(pointSize: 80)
-        playPauseButton.setImage(UIImage(systemName: isPlaing ? "pause.circle.fill" : "play.circle.fill",
+        playPauseButton.setImage(UIImage(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill",
                                          withConfiguration: config), for: .normal)
         
         
@@ -294,7 +294,7 @@ final class MediaPlayer: UIView {
         
     }
     
-    @objc private func progressScrubebd(_ sender: UISlider) {
+    @objc private func progressScrubbed(_ sender: UISlider) {
         player.currentTime = Float64(sender.value)
     }
     
@@ -315,7 +315,7 @@ final class MediaPlayer: UIView {
         } else {
             player.play()
         }
-        setPlayPauseIcon(isPlaing: player.isPlaying)
+        setPlayPauseIcon(isPlaying: player.isPlaying)
     }
     
     @objc func updateProgress() {
@@ -333,7 +333,7 @@ final class MediaPlayer: UIView {
         }
         setupPlayer(song: album.songs[playingIndex])
         play()
-        setPlayPauseIcon(isPlaing: player.isPlaying)
+        setPlayPauseIcon(isPlaying: player.isPlaying)
         
     }
     
