@@ -7,6 +7,7 @@ final class MediaPlayer: UIView {
     var album: Album
     var currentVolume: Float
     
+    
     private var player = AVAudioPlayer()
     private var timer: Timer?
     private var playingIndex = 0
@@ -111,8 +112,28 @@ final class MediaPlayer: UIView {
         return button
     }()
     
+    private lazy var blueToothButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "tv.and.hifispeaker.fill", withConfiguration: config), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(blueToothSearch), for: .touchUpInside)
+        return button
+    }()
+    private lazy var airPlayButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "airplayaudio", withConfiguration: config), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(airPlayMode), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var controlStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [previousButton, playPauseButton, nextButton])
+        let stack = UIStackView(arrangedSubviews: [airPlayButton, previousButton, playPauseButton, nextButton, blueToothButton])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
@@ -139,11 +160,11 @@ final class MediaPlayer: UIView {
         
         
         [albumName, songNameLabel, artistLabel, elapsedTimerLabel, remainingTimeLabel].forEach { (view) in
-            view.textColor = .white
+        view.textColor = .white
         }
         
         [previousButton, playPauseButton, nextButton].forEach { (view) in
-            view.tintColor = .white
+        view.tintColor = .white
         }
         
         [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimerLabel,
@@ -152,6 +173,7 @@ final class MediaPlayer: UIView {
          }
         
         setupConstrains()
+        
     }
     
     private func setupConstrains() {
@@ -337,8 +359,14 @@ final class MediaPlayer: UIView {
         
     }
     
+    @objc private func blueToothSearch() {
+       print("BlueTooth")
+    }
     
-    
+    @objc private func airPlayMode() {
+       print("AirPlay")
+    }
+
 }
 
 extension MediaPlayer: AVAudioPlayerDelegate {

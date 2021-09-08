@@ -8,6 +8,7 @@ class AlbumTableViewCell: UITableViewCell {
                 albumCover.image = UIImage(named: album.image)
                 albumName.text = album.name
                 songsCount.text = "\(album.songs.count) Song"
+                
             }
         }
     }
@@ -44,10 +45,12 @@ class AlbumTableViewCell: UITableViewCell {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         
+        
     }
     private func setupView() {
         [albumCover, albumName, songsCount].forEach { (v) in
             contentView.addSubview(v)
+            contentView.backgroundColor = #colorLiteral(red: 0.2688741684, green: 0.7268517613, blue: 0.7434308529, alpha: 1)
         }
         setupConstrains()
     }

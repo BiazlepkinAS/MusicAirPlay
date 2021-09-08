@@ -24,7 +24,7 @@ final class MusicPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
+        view.backgroundColor = #colorLiteral(red: 0.2505040467, green: 0.6873538494, blue: 0.6911943555, alpha: 1)
     }
     
     override func viewDidAppear(_ animated: Bool) {

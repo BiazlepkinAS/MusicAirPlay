@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
         table.estimatedRowHeight = 110
         table.rowHeight = UITableView.automaticDimension
         table.tableFooterView = UIView()
+        table.backgroundColor = #colorLiteral(red: 0.2935881019, green: 0.7225453258, blue: 0.7436243296, alpha: 1)
+        table.separatorColor = .secondarySystemBackground
         return table
     }()
     
@@ -24,6 +26,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
         setupView()
+        view.backgroundColor = #colorLiteral(red: 0.1211808696, green: 0.377275914, blue: 0.4133348465, alpha: 1)
         
     }
     
