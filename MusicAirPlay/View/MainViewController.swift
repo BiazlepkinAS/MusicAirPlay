@@ -4,6 +4,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     let album = Album.get()
+    var bleManager = BLEManager()
     
     
     private lazy var tableView: UITableView = {
@@ -28,7 +29,12 @@ class MainViewController: UIViewController {
         setupView()
         view.backgroundColor = #colorLiteral(red: 0.1211808696, green: 0.377275914, blue: 0.4133348465, alpha: 1)
         
+        
+
+
+        
     }
+    
     
     private func setupConstrains() {
         NSLayoutConstraint.activate([
@@ -46,7 +52,15 @@ class MainViewController: UIViewController {
         setupConstrains()
         
     }
+    
+    @objc func bluetoothChanged(notification: NSNotification) {
 
+        if let status = notification.userInfo?["statusString"] as? String {
+            print("Bluetooth status = \(status)")
+        }
+
+
+}
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {

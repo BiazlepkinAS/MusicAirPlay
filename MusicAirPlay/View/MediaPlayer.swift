@@ -1,11 +1,15 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 final class MediaPlayer: UIView {
     
     var album: Album
     var currentVolume: Float
+//    var bleManager: BLEHandler!
+    var bleManager: BLEManager!
+   
     
     
     private var player = AVAudioPlayer()
@@ -16,9 +20,9 @@ final class MediaPlayer: UIView {
     private lazy var albumCover: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleToFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = image.frame.height / 2
+        image.layer.cornerRadius = 200
         return image
     }()
     
@@ -119,6 +123,7 @@ final class MediaPlayer: UIView {
         button.setImage(UIImage(systemName: "tv.and.hifispeaker.fill", withConfiguration: config), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(blueToothSearch), for: .touchUpInside)
+        
         return button
     }()
     private lazy var airPlayButton: UIButton = {
@@ -126,6 +131,9 @@ final class MediaPlayer: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "airplayaudio", withConfiguration: config), for: .normal)
+        let buttonFrame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        
+        
         button.tintColor = .white
         button.addTarget(self, action: #selector(airPlayMode), for: .touchUpInside)
         
@@ -147,6 +155,8 @@ final class MediaPlayer: UIView {
         self.currentVolume = 0.5
         super.init(frame: .zero)
         setupView()
+        
+        bleManager = BLEManager()
     }
     
     required init?(coder: NSCoder) {
@@ -242,6 +252,7 @@ final class MediaPlayer: UIView {
         guard let url = Bundle.main.url(forResource: song.fileName, withExtension: ".mp3") else {
             return
         }
+    
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.0011, target: self,
                                          selector: #selector(updateProgress),
@@ -264,6 +275,7 @@ final class MediaPlayer: UIView {
         setVolume()
         
     }
+    
     
     
     
@@ -307,6 +319,12 @@ final class MediaPlayer: UIView {
         }
         return "\(minutesString): \(secondString)"
     }
+    
+   
+        func setupAirPlayButton() {
+            
+        }
+    
     
     
     @objc func didSlideSlider(_ slider: UISlider) {
@@ -360,13 +378,48 @@ final class MediaPlayer: UIView {
     }
     
     @objc private func blueToothSearch() {
+        bleManager = BLEManager()
+        
+        showAlert()
+        
+        
        print("BlueTooth")
     }
     
     @objc private func airPlayMode() {
+        let rect = CGRect(x: 100, y: 0, width: 0, height: 0)
+        let airPlayVolume = MPVolumeView(frame: rect)
+        airPlayVolume.showsVolumeSlider = false
+        self.addSubview(airPlayVolume)
+        for view: UIView in airPlayVolume.subviews {
+            if let button = view as? UIButton{
+                button.sendActions(for: .touchUpInside)
+                break
+            }
+        }
+        airPlayVolume.removeFromSuperview()
+        
+        
+        
        print("AirPlay")
     }
 
+
+    func showAlert() {
+let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    ac.addAction(UIAlertAction(title: "iPhone", style: .default, handler: { (action) in
+        //do airplay stuff that connects to the iPhone
+    }))
+    ac.addAction(UIAlertAction(title: "MacBook Pro", style: .default, handler: { (action) in
+        //do airplay stuff that connects to the MacBook Pro
+    }))
+    ac.addAction(UIAlertAction(title: "Apple TV 3", style: .default, handler: { (action) in
+        //do airplay stuff that connects to the Apple TV 3
+    }))
+    ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        
+}
 }
 
 extension MediaPlayer: AVAudioPlayerDelegate {

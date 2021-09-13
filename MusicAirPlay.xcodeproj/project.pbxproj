@@ -23,6 +23,7 @@
 		0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */; };
 		0905E97E26E68F9C005B02B0 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97D26E68F9C005B02B0 /* MediaPlayer.swift */; };
 		0905E98026E7DE7A005B02B0 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905E97F26E7DE7A005B02B0 /* MusicPlayerViewController.swift */; };
+		09A200C526EA7D12008D10E8 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A200C426EA7D12008D10E8 /* BLEManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		0905E97B26E54A3B005B02B0 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0905E97D26E68F9C005B02B0 /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		0905E97F26E7DE7A005B02B0 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		09A200C426EA7D12008D10E8 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		0905E93D26DFFBAD005B02B0 /* MusicAirPlay */ = {
 			isa = PBXGroup;
 			children = (
+				09A200C326EA7CF4008D10E8 /* Connections */,
 				0905E96E26E3F3FD005B02B0 /* View */,
 				0905E96F26E3F40B005B02B0 /* Models */,
 				0905E94726DFFBB1005B02B0 /* Assets.xcassets */,
@@ -174,6 +177,14 @@
 				0905E97226E3F897005B02B0 /* Metallica.mp3 */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		09A200C326EA7CF4008D10E8 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				09A200C426EA7D12008D10E8 /* BLEManager.swift */,
+			);
+			path = Connections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				0905E94126DFFBAD005B02B0 /* SceneDelegate.swift in Sources */,
 				0905E97A26E4076F005B02B0 /* Album.swift in Sources */,
 				0905E97C26E54A3B005B02B0 /* AlbumTableViewCell.swift in Sources */,
+				09A200C526EA7D12008D10E8 /* BLEManager.swift in Sources */,
 				0905E98026E7DE7A005B02B0 /* MusicPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
