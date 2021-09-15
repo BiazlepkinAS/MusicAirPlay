@@ -8,7 +8,6 @@ class AlbumTableViewCell: UITableViewCell {
                 albumCover.image = UIImage(named: album.image)
                 albumName.text = album.name
                 songsCount.text = "\(album.songs.count) Song"
-                
             }
         }
     }

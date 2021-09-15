@@ -6,7 +6,7 @@ final class MusicPlayerViewController: UIViewController {
     var album: Album
     
     private lazy var mediaPlayer: MediaPlayer = {
-       let player = MediaPlayer(album: album)
+        let player = MediaPlayer(album: album)
         player.translatesAutoresizingMaskIntoConstraints = false
         
         return player
@@ -60,8 +60,7 @@ final class MusicPlayerViewController: UIViewController {
             mediaPlayer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             mediaPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mediaPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
+            
         ])
     }
-    
 }

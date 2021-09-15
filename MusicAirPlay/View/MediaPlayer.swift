@@ -7,15 +7,10 @@ final class MediaPlayer: UIView {
     
     var album: Album
     var currentVolume: Float
-//    var bleManager: BLEHandler!
     var bleManager: BLEManager!
-   
-    
-    
     private var player = AVAudioPlayer()
     private var timer: Timer?
     private var playingIndex = 0
-    
     
     private lazy var albumCover: UIImageView = {
         let image = UIImageView()
@@ -39,7 +34,6 @@ final class MediaPlayer: UIView {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumTrackTintColor = UIColor(named: "subtitleColor")
         slider.addTarget(self, action: #selector(progressScrubbed), for: .valueChanged)
-        
         return slider
     }()
     
@@ -56,8 +50,6 @@ final class MediaPlayer: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.text = "00:00"
-        
-        
         return label
     }()
     
@@ -66,7 +58,6 @@ final class MediaPlayer: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.text = "00:00"
-        
         return label
     }()
     
@@ -74,7 +65,6 @@ final class MediaPlayer: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        
         return label
     }()
     
@@ -82,7 +72,6 @@ final class MediaPlayer: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        
         return label
     }()
     
@@ -92,7 +81,6 @@ final class MediaPlayer: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "backward.end.fill", withConfiguration: config), for: .normal)
         button.addTarget(self, action: #selector(didTapPrevious), for: .touchUpInside)
-        
         return button
     }()
     
@@ -102,7 +90,6 @@ final class MediaPlayer: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 80)
         button.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
         button.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
-        
         return button
     }()
     
@@ -112,31 +99,26 @@ final class MediaPlayer: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "forward.end.fill", withConfiguration: config), for: .normal)
         button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
-        
         return button
     }()
     
     private lazy var blueToothButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "tv.and.hifispeaker.fill", withConfiguration: config), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(blueToothSearch), for: .touchUpInside)
-        
         return button
     }()
     private lazy var airPlayButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "airplayaudio", withConfiguration: config), for: .normal)
         let buttonFrame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        
-        
         button.tintColor = .white
         button.addTarget(self, action: #selector(airPlayMode), for: .touchUpInside)
-        
         return button
     }()
     
@@ -146,7 +128,6 @@ final class MediaPlayer: UIView {
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.spacing = 13
-        
         return stack
     }()
     
@@ -155,7 +136,6 @@ final class MediaPlayer: UIView {
         self.currentVolume = 0.5
         super.init(frame: .zero)
         setupView()
-        
         bleManager = BLEManager()
     }
     
@@ -167,27 +147,20 @@ final class MediaPlayer: UIView {
         albumName.text = album.name
         albumCover.image = UIImage(named: album.image)
         setupPlayer(song: album.songs[playingIndex])
-        
-        
         [albumName, songNameLabel, artistLabel, elapsedTimerLabel, remainingTimeLabel].forEach { (view) in
-        view.textColor = .white
+            view.textColor = .white
         }
-        
         [previousButton, playPauseButton, nextButton].forEach { (view) in
-        view.tintColor = .white
+            view.tintColor = .white
         }
-        
         [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimerLabel,
          remainingTimeLabel, controlStack, volumeBar].forEach { (view) in
             addSubview(view)
          }
-        
         setupConstrains()
-        
     }
     
     private func setupConstrains() {
-        
         NSLayoutConstraint.activate([
             albumName.topAnchor.constraint(equalTo: topAnchor, constant: 18),
             albumName.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -205,46 +178,40 @@ final class MediaPlayer: UIView {
             songNameLabel.topAnchor.constraint(equalTo: albumCover.bottomAnchor, constant: 18),
             songNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             songNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18)
-            
         ])
         
         NSLayoutConstraint.activate([
             artistLabel.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: 10),
             artistLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             artistLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18)
-            
         ])
         
         NSLayoutConstraint.activate([
             progressBar.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 10),
             progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             progressBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18)
-            
         ])
+        
         NSLayoutConstraint.activate([
             elapsedTimerLabel.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 10),
             elapsedTimerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18)
-            
         ])
         
         NSLayoutConstraint.activate([
             remainingTimeLabel.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 10),
             remainingTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
-            
         ])
         
         NSLayoutConstraint.activate([
             controlStack.topAnchor.constraint(equalTo: remainingTimeLabel.bottomAnchor, constant: 10),
             controlStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             controlStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50)
-            
         ])
         
         NSLayoutConstraint.activate([
             volumeBar.topAnchor.constraint(equalTo: controlStack.bottomAnchor, constant: 10),
             volumeBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             volumeBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18)
-            
         ])
     }
     
@@ -252,7 +219,6 @@ final class MediaPlayer: UIView {
         guard let url = Bundle.main.url(forResource: song.fileName, withExtension: ".mp3") else {
             return
         }
-    
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.0011, target: self,
                                          selector: #selector(updateProgress),
@@ -273,11 +239,7 @@ final class MediaPlayer: UIView {
             print(error.localizedDescription)
         }
         setVolume()
-        
     }
-    
-    
-    
     
     func play() {
         progressBar.value = 0.0
@@ -301,8 +263,6 @@ final class MediaPlayer: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 80)
         playPauseButton.setImage(UIImage(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill",
                                          withConfiguration: config), for: .normal)
-        
-        
     }
     
     private func getFormattedTime (timeInterval: TimeInterval) -> String {
@@ -319,19 +279,14 @@ final class MediaPlayer: UIView {
         }
         return "\(minutesString): \(secondString)"
     }
-    
-   
-        func setupAirPlayButton() {
-            
-        }
-    
-    
+    func setupAirPlayButton() {
+        
+    }
     
     @objc func didSlideSlider(_ slider: UISlider) {
         let value = volumeBar.value
         player.volume = value
         currentVolume = value
-        
     }
     
     @objc private func progressScrubbed(_ sender: UISlider) {
@@ -345,8 +300,6 @@ final class MediaPlayer: UIView {
         }
         setupPlayer(song: album.songs[playingIndex])
         play()
-        
-        
     }
     
     @objc func didTapPlayPause(_ sender: UIButton) {
@@ -363,7 +316,6 @@ final class MediaPlayer: UIView {
         let remainingTime = player.duration - player.currentTime
         remainingTimeLabel.text = getFormattedTime(timeInterval: player.currentTime)
         elapsedTimerLabel.text = getFormattedTime(timeInterval: remainingTime)
-        
     }
     
     @objc private func didTapNext(_ sender: UIButton) {
@@ -374,16 +326,11 @@ final class MediaPlayer: UIView {
         setupPlayer(song: album.songs[playingIndex])
         play()
         setPlayPauseIcon(isPlaying: player.isPlaying)
-        
     }
     
     @objc private func blueToothSearch() {
         bleManager = BLEManager()
-        
         showAlert()
-        
-        
-       print("BlueTooth")
     }
     
     @objc private func airPlayMode() {
@@ -398,28 +345,21 @@ final class MediaPlayer: UIView {
             }
         }
         airPlayVolume.removeFromSuperview()
-        
-        
-        
-       print("AirPlay")
     }
-
-
+    
     func showAlert() {
-let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    ac.addAction(UIAlertAction(title: "iPhone", style: .default, handler: { (action) in
-        //do airplay stuff that connects to the iPhone
-    }))
-    ac.addAction(UIAlertAction(title: "MacBook Pro", style: .default, handler: { (action) in
-        //do airplay stuff that connects to the MacBook Pro
-    }))
-    ac.addAction(UIAlertAction(title: "Apple TV 3", style: .default, handler: { (action) in
-        //do airplay stuff that connects to the Apple TV 3
-    }))
-    ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        
-}
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "iPhone", style: .default, handler: { (action) in
+            //do airplay stuff that connects to the iPhone
+        }))
+        ac.addAction(UIAlertAction(title: "MacBook Pro", style: .default, handler: { (action) in
+            //do airplay stuff that connects to the MacBook Pro
+        }))
+        ac.addAction(UIAlertAction(title: "Apple TV 3", style: .default, handler: { (action) in
+            //do airplay stuff that connects to the Apple TV 3
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    }
 }
 
 extension MediaPlayer: AVAudioPlayerDelegate {

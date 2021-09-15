@@ -3,14 +3,11 @@ import CoreBluetooth
 class BLEManager {
     var centralManager: CBCentralManager!
     var bleHandler: BLEHandler
-
+    
     init() {
         self.bleHandler = BLEHandler()
         self.centralManager = CBCentralManager(delegate: self.bleHandler, queue: nil)
     }
-    
-    
-    
 }
 
 class BLEHandler: NSObject, CBCentralManagerDelegate {
@@ -40,14 +37,10 @@ class BLEHandler: NSObject, CBCentralManagerDelegate {
         }
     }
     
-//    var bleManager = BLEManager()
-    
     func centralManager(central: CBCentralManager!,
                         didDescoverPeripheral peripheral: CBPeripheral!,
                         advertiSementData: [NSObject : AnyObject]!,
                         RSSI: NSNumber!) {
         print("\(peripheral.name) : \(RSSI) dBm)")
     }
-    
-   
 }
